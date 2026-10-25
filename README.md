@@ -26,10 +26,10 @@ Without a key the contact section falls back to a plain `mailto:` button.
 
 ## Deploy to GitHub Pages
 
-1. Push this repo to `github.com/jayjatharjj/Porfolio` (branch `main`).
+1. Push this repo to `github.com/jayjatharjj/Portfolio` (branch `main`).
 2. **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-3. The workflow in `.github/workflows/deploy.yml` builds with `NEXT_PUBLIC_BASE_PATH=/Porfolio` and publishes `out/`.
-   Site URL: `https://jayjatharjj.github.io/Porfolio/`.
+3. The workflow in `.github/workflows/deploy.yml` builds with `NEXT_PUBLIC_BASE_PATH=/<repo name>` and publishes `out/`.
+   Site URL: `https://jayjatharjj.github.io/Portfolio/`.
 
 If you rename the repository, update `NEXT_PUBLIC_BASE_PATH` in the workflow (or use `/` for a `<user>.github.io` repo).
 
