@@ -28,10 +28,10 @@ Without a key the contact section falls back to a plain `mailto:` button.
 
 1. Push this repo to `github.com/jayjatharjj/Portfolio` (branch `main`).
 2. **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-3. The workflow in `.github/workflows/deploy.yml` builds with `NEXT_PUBLIC_BASE_PATH=/<repo name>` and publishes `out/`.
-   Site URL: `https://jayjatharjj.github.io/Portfolio/`.
+3. The workflow in `.github/workflows/deploy.yml` builds and publishes `out/`.
+   Site URL: `https://jay.jathar.in/` (custom domain, set in **Settings → Pages → Custom domain**).
 
-If you rename the repository, update `NEXT_PUBLIC_BASE_PATH` in the workflow (or use `/` for a `<user>.github.io` repo).
+The site is served from the domain root, so it builds with no base path. If you drop the custom domain and serve from `https://<user>.github.io/<repo>/`, set `NEXT_PUBLIC_BASE_PATH=/<repo>` in the workflow.
 
 ## Résumé download
 

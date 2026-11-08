@@ -10,7 +10,7 @@ const description =
   "Jay Jathar - Full Stack Java engineer building cloud-native microservices on AWS and Azure, with growing hands-on experience in agentic AI workflows.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://jayjatharjj.github.io/Portfolio/"),
+  metadataBase: new URL("https://jay.jathar.in/"),
   title,
   description,
   openGraph: { type: "website", siteName: "Jay Jathar", title, description },
