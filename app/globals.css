@@ -1,6 +1,6 @@
 :root{
   --bg:#0b0b0f; --bg2:#121218; --card:#16161d; --line:#262631; --text:#f4f4f6; --mute:#9a9aab;
-  --accent:#ff7a1a; --accent2:#ffa24d; --ok:#3ddc97; --blue:#2f6bff; --blue2:#97b5ff;
+  --accent:#ff7a1a; --accent2:#ffa24d; --ok:#3ddc97; --blue:#2f6bff; --blue2:#4d8aff;
   --r:18px; --mono:var(--font-mono),ui-monospace,Consolas,monospace; --sans:var(--font-inter),system-ui,-apple-system,'Segoe UI',sans-serif;
 }
 *{box-sizing:border-box;margin:0}
@@ -279,10 +279,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .prose>*+*{margin-top:1.1em}
 .prose h2{font-size:clamp(24px,3vw,30px);line-height:1.2;letter-spacing:-.025em;font-weight:800;color:var(--text);margin:2.4em 0 .2em;padding-top:1.4em;border-top:1px solid var(--line);scroll-margin-top:84px}
 .prose>h2:first-child{margin-top:0;padding-top:0;border-top:0}
-.prose h3{font-size:19px;letter-spacing:-.015em;color:var(--blue2);margin-top:2em;scroll-margin-top:84px}
+.prose h3{font-size:19px;letter-spacing:-.015em;color:var(--blue);margin-top:2em;scroll-margin-top:84px}
 .prose h4{font-size:16px;color:var(--text);margin-top:1.6em;scroll-margin-top:84px}
 .prose strong{color:var(--text)}
-.prose a{color:var(--blue2);text-decoration:underline;text-underline-offset:3px}
+.prose a{color:var(--blue2);text-decoration:underline;text-decoration-color:var(--blue);text-underline-offset:3px}
 .prose ul,.prose ol{padding-left:1.4em}
 .prose li{margin-top:.4em}
 .prose li::marker{color:var(--accent)}
@@ -367,5 +367,5 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   .post-card p{font-size:13px}
   .prose{font-size:15px}
   .prose h2{font-size:22px}
-  .prose h3{font-size:17px}
+  .prose h3{font-size:17px;color:var(--blue2)} /* below WCAG large-text size, so the lighter blue */
 }

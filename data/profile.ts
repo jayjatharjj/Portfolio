@@ -19,7 +19,7 @@ export const flow: FlowNode[] = [
   { icon: "’17", color: "#f59e0b", title: "School", sub: "completed in 2017" },
   { icon: "’19", color: "#2f6bff", title: "Junior college", sub: "2019 · interest in web apps began" },
   { icon: "’23", color: "#22c55e", title: "Engineering", sub: "first class with distinction · fell in love with Java" },
-  { icon: "INT", color: "#97b5ff", title: "Internships", sub: "SQL, Java & back-end, started early" },
+  { icon: "INT", color: "#4d8aff", title: "Internships", sub: "SQL, Java & back-end, started early" },
   { icon: "2D", color: "#ec4899", title: "TwoDots", sub: "Oct 2023 – Jul 2026" },
   { icon: "BGI", color: "#14b8a6", title: "Bajaj General Insurance", sub: "Jul 2026 – now" },
   { icon: "→", color: "#64748b", title: "What's next", sub: "curious · growing in agentic AI" },
