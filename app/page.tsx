@@ -56,29 +56,47 @@ export default function Home() {
 
       <main id="main">
         <header className="wrap hero" id="top">
-          <Reveal className="pill">
-            <span className="dot" aria-hidden="true" /> Open to opportunities · {profile.location}
-          </Reveal>
-          <Reveal as="h1">
-            {profile.headline.lead} <span>{profile.headline.accent}</span>
-          </Reveal>
-          <Reveal as="p">{profile.intro}</Reveal>
-          <Reveal className="cta">
-            <a className="btn primary" href="#projects">
-              See my work
-            </a>
-            {profile.resume && (
-              <a className="btn" href={`${base}/${profile.resume}`} download>
-                Download résumé ↓
-              </a>
-            )}
-            <a className="btn" href={profile.github} target="_blank" rel="noopener noreferrer">
-              GitHub <NewTab />
-            </a>
-            <a className="btn" href={profile.linkedin} target="_blank" rel="noopener noreferrer">
-              LinkedIn <NewTab />
-            </a>
-          </Reveal>
+          <div className="hero-top">
+            <div className="hero-copy">
+              <Reveal className="pill">
+                <span className="dot" aria-hidden="true" /> Open to opportunities · {profile.location}
+              </Reveal>
+              <Reveal as="p" className="hi">
+                Hi, I&apos;m Jay
+              </Reveal>
+              <Reveal as="h1">
+                {profile.headline.lead} <span>{profile.headline.accent}</span>
+              </Reveal>
+              <Reveal as="p">{profile.intro}</Reveal>
+              <Reveal className="cta">
+                <a className="btn primary" href="#projects">
+                  See my work
+                </a>
+                {profile.resume && (
+                  <a className="btn" href={`${base}/${profile.resume}`} download>
+                    Download résumé ↓
+                  </a>
+                )}
+                <a className="btn" href={profile.github} target="_blank" rel="noopener noreferrer">
+                  GitHub <NewTab />
+                </a>
+                <a className="btn" href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+                  LinkedIn <NewTab />
+                </a>
+              </Reveal>
+            </div>
+            <Reveal className="portrait">
+              {/* Plain <img>: static export with unoptimized images, so next/image adds nothing. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`${base}/portrait.webp`}
+                alt={`${profile.name} sitting with a laptop`}
+                width={800}
+                height={1200}
+                fetchPriority="high"
+              />
+            </Reveal>
+          </div>
           <Reveal>
             <WorkflowCanvas />
           </Reveal>
