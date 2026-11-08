@@ -7,7 +7,7 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", displ
 
 const title = "Jay Jathar — Full Stack Engineer";
 const description =
-  "Jay Jathar — Full Stack Java engineer building cloud-native microservices and agentic AI workflows.";
+  "Jay Jathar — Full Stack Java engineer building cloud-native microservices on AWS and Azure, with growing hands-on experience in agentic AI workflows.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://jayjatharjj.github.io/Portfolio/"),

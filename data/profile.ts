@@ -10,7 +10,7 @@ export const profile = {
   resume: "",
   headline: { lead: "I build Java applications &", accent: "ship them on the cloud." },
   intro:
-    "Java developer with 3+ years of experience building Spring Boot microservices and deploying them on AWS and Azure. I build frontends with AI-assisted development, I'm a beginner in agentic AI and curious to explore it, and I take on freelance client projects alongside my day job.",
+    "Java developer with 3+ years of experience building Spring Boot microservices and deploying them on AWS and Azure. I build frontends with AI-assisted development, I have growing hands-on experience with agentic AI, and I take on freelance client projects alongside my day job.",
 };
 
 export type FlowNode = { icon: string; color: string; title: string; sub: string };
@@ -22,7 +22,7 @@ export const flow: FlowNode[] = [
   { icon: "INT", color: "#8b7bff", title: "Internships", sub: "SQL, Java & back-end, started early" },
   { icon: "2D", color: "#ec4899", title: "TwoDots", sub: "Oct 2023 – Jul 2026" },
   { icon: "BGI", color: "#14b8a6", title: "Bajaj General Insurance", sub: "Jul 2026 – now" },
-  { icon: "→", color: "#64748b", title: "What's next", sub: "curious · beginner in agentic AI" },
+  { icon: "→", color: "#64748b", title: "What's next", sub: "curious · growing in agentic AI" },
 ];
 
 export type Stat = { label: string; n?: number; suffix?: string; text?: string };
@@ -194,7 +194,7 @@ export const stack: { title: string; items: string[] }[] = [
   { title: "Cloud & DevOps", items: ["AWS EC2 · S3 · SQS", "Azure", "Docker", "Kubernetes", "GitLab CI/CD", "Jenkins", "Bicep", "Linux"] },
   { title: "Data", items: ["PostgreSQL", "MySQL", "Redis"] },
   { title: "Frontend (AI-assisted)", items: ["React", "Vue.js", "D3.js", "Tailwind"] },
-  { title: "Curious about", items: ["Agentic AI", "n8n workflows", "LLM APIs"] },
+  { title: "Growing in", items: ["Agentic AI", "n8n workflows", "LLM APIs"] },
 ];
 
 export type FreelanceStatus = "Live" | "In progress" | "Awaiting client";
