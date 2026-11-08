@@ -15,7 +15,7 @@ export const profile = {
 
 export type FlowNode = { icon: string; color: string; title: string; sub: string };
 export const flow: FlowNode[] = [
-  { icon: "2001", color: "#ff6d5a", title: "Born", sub: "14 Sep 2001" },
+  { icon: "2001", color: "#ff6d5a", title: "Born", sub: "2001" },
   { icon: "’17", color: "#f59e0b", title: "School", sub: "completed in 2017" },
   { icon: "’19", color: "#3b82f6", title: "Junior college", sub: "2019 · interest in web apps began" },
   { icon: "’23", color: "#22c55e", title: "Engineering", sub: "first class with distinction · fell in love with Java" },
