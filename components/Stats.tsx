@@ -39,7 +39,14 @@ function Counter({ stat }: { stat: Stat }) {
     };
   }, [stat.n, stat.suffix]);
 
-  return <b ref={ref}>{final}</b>;
+  return (
+    <>
+      <b ref={ref} aria-hidden="true">
+        {final}
+      </b>
+      <span className="sr-only">{final}</span>
+    </>
+  );
 }
 
 export default function Stats() {

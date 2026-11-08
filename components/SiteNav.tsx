@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { profile } from "@/data/profile";
 
@@ -16,18 +16,31 @@ const links = [
 export default function SiteNav() {
   // Below 900px the links collapse into a menu that drops down under the bar.
   const [open, setOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+  const btnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      btnRef.current?.focus(); // the focused link is about to be hidden
+    };
+    const onPointer = (e: PointerEvent) => {
+      if (!navRef.current?.contains(e.target as Node)) setOpen(false);
+    };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onPointer);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onPointer);
+    };
   }, [open]);
 
   const close = () => setOpen(false);
 
   return (
-    <nav aria-label="Main">
+    <nav className="site-nav" aria-label="Main" ref={navRef}>
       <div className="wrap nav">
         <Link className="logo" href="/#top" onClick={close}>
           <i>{profile.initials}</i> {profile.short}
@@ -47,6 +60,7 @@ export default function SiteNav() {
             Let&apos;s talk →
           </Link>
           <button
+            ref={btnRef}
             className="menu-btn"
             type="button"
             aria-expanded={open}

@@ -23,10 +23,20 @@ import { getAllPosts } from "@/lib/blog";
 
 const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
+/** The ↗ is decoration; screen readers hear that the link opens a new tab instead. */
+function NewTab() {
+  return (
+    <>
+      <span aria-hidden="true">↗</span>
+      <span className="sr-only"> (opens in a new tab)</span>
+    </>
+  );
+}
+
 function Rows({ title, rows }: { title: string; rows: { name: string; date: string }[] }) {
   return (
     <Reveal className="list">
-      <h4>{title}</h4>
+      <h3>{title}</h3>
       {rows.map((r) => (
         <div className="row" key={r.name}>
           <div>{r.name}</div>
@@ -44,10 +54,10 @@ export default function Home() {
     <>
       <SiteNav />
 
-      <main>
+      <main id="main">
         <header className="wrap hero" id="top">
           <Reveal className="pill">
-            <span className="dot" /> Open to opportunities · {profile.location}
+            <span className="dot" aria-hidden="true" /> Open to opportunities · {profile.location}
           </Reveal>
           <Reveal as="h1">
             {profile.headline.lead} <span>{profile.headline.accent}</span>
@@ -63,10 +73,10 @@ export default function Home() {
               </a>
             )}
             <a className="btn" href={profile.github} target="_blank" rel="noopener noreferrer">
-              GitHub ↗
+              GitHub <NewTab />
             </a>
             <a className="btn" href={profile.linkedin} target="_blank" rel="noopener noreferrer">
-              LinkedIn ↗
+              LinkedIn <NewTab />
             </a>
           </Reveal>
           <Reveal>
@@ -95,7 +105,9 @@ export default function Home() {
                   {job.current && (
                     <>
                       <br />
-                      <span className="tag">● Current</span>
+                      <span className="tag">
+                        <span aria-hidden="true">● </span>Current
+                      </span>
                     </>
                   )}
                 </div>
@@ -147,7 +159,7 @@ export default function Home() {
             <div className="stack">
               {stack.map((g) => (
                 <Reveal className="group" key={g.title}>
-                  <h4>{g.title}</h4>
+                  <h3>{g.title}</h3>
                   <div className="chips" style={{ margin: 0 }}>
                     {g.items.map((i) => (
                       <span className="chip" key={i}>
@@ -169,8 +181,8 @@ export default function Home() {
               <Rows title="Certifications" rows={certifications} />
               <Rows title="Achievements" rows={achievements} />
             </div>
-            <Reveal className="list" >
-              <h4>Education</h4>
+            <Reveal className="list">
+              <h3>Education</h3>
               <div className="row">
                 <div>
                   {education.name}
@@ -222,8 +234,8 @@ export default function Home() {
               <Reveal className="eyebrow">Writing</Reveal>
               <Reveal as="h2">Notes from the work.</Reveal>
               <div className="posts">
-                {posts.slice(0, 3).map((post, i) => (
-                  <PostCard key={post.slug} post={post} index={i} />
+                {posts.slice(0, 3).map((post) => (
+                  <PostCard key={post.slug} post={post} />
                 ))}
               </div>
               <Reveal className="cta">
@@ -248,10 +260,10 @@ export default function Home() {
               <Contact />
               <div className="cta">
                 <a className="btn" href={profile.linkedin} target="_blank" rel="noopener noreferrer">
-                  LinkedIn ↗
+                  LinkedIn <NewTab />
                 </a>
                 <a className="btn" href={profile.github} target="_blank" rel="noopener noreferrer">
-                  GitHub ↗
+                  GitHub <NewTab />
                 </a>
               </div>
             </Reveal>

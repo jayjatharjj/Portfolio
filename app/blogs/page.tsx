@@ -18,7 +18,7 @@ export default function BlogIndex() {
   return (
     <>
       <SiteNav />
-      <main>
+      <main id="main">
         <header className="wrap blog-hero">
           <Reveal className="eyebrow">Writing</Reveal>
           <Reveal as="h1">
@@ -30,7 +30,7 @@ export default function BlogIndex() {
           </Reveal>
           <Reveal className="blog-stats">
             <span>
-              <b>{posts.length}</b> posts
+              <b>{posts.length}</b> {posts.length === 1 ? "post" : "posts"}
             </span>
             <span>
               <b>{minutes}</b> min of reading
@@ -38,11 +38,14 @@ export default function BlogIndex() {
           </Reveal>
         </header>
 
-        <section className="wrap blog-list">
+        <section className="wrap blog-list" aria-labelledby="all-posts">
+          <h2 className="sr-only" id="all-posts">
+            All posts
+          </h2>
           {posts.length ? (
             <div className="posts">
-              {posts.map((post, i) => (
-                <PostCard key={post.slug} post={post} index={i} />
+              {posts.map((post) => (
+                <PostCard key={post.slug} post={post} />
               ))}
             </div>
           ) : (

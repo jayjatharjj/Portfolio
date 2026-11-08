@@ -14,6 +14,7 @@ export default function Reveal({ as: Tag = "div", className = "", children, onPo
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    document.documentElement.setAttribute("data-rv", "");
     const el = ref.current;
     if (!el) return;
     if (!("IntersectionObserver" in window)) {

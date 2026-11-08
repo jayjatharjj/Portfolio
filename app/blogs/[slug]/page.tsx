@@ -28,6 +28,7 @@ export default async function PostPage({ params }: Props) {
   if (!post) notFound();
 
   const posts = getAllPosts();
+  const series = posts.filter((p) => p.part !== null).length;
   const i = posts.findIndex((p) => p.slug === slug);
   const prev = posts[i - 1];
   const next = posts[i + 1];
@@ -36,17 +37,16 @@ export default async function PostPage({ params }: Props) {
     <>
       <SiteNav />
       <PostEnhancer />
-      <main className="wrap post">
+      <main className="wrap post" id="main">
         <header className="post-head">
-          <div className="crumbs">
+          <nav className="crumbs" aria-label="Breadcrumb">
             <Link href="/blogs">Blog</Link>
-            <span>/</span>
-            <span>
-              Part {i + 1} of {posts.length}
-            </span>
-          </div>
+            <span aria-hidden="true">/</span>
+            <span>{post.part !== null ? `Part ${post.part} of ${series}` : "Cheat sheet"}</span>
+          </nav>
           <h1>{post.title}</h1>
-          <p>{post.description}</p>
+          {/* When the summary is the post's own opening quote, the post shows it right below. */}
+          {!post.descriptionInBody && <p>{post.description}</p>}
           <div className="meta">
             <span>{post.readingMinutes} min read</span>
             <span>{post.sectionCount} sections</span>
@@ -79,14 +79,12 @@ export default async function PostPage({ params }: Props) {
             {/* Rendered at build time from our own Markdown; raw HTML in Markdown is not passed through. */}
             <article className="prose" dangerouslySetInnerHTML={{ __html: post.html }} />
 
-            <div className="pager" role="navigation" aria-label="More posts">
-              {prev ? (
+            <nav className="pager" aria-label="More posts">
+              {prev && (
                 <Link href={`/blogs/${prev.slug}`}>
                   <small>← Previous</small>
                   {prev.title}
                 </Link>
-              ) : (
-                <span />
               )}
               {next && (
                 <Link className="next" href={`/blogs/${next.slug}`}>
@@ -94,7 +92,7 @@ export default async function PostPage({ params }: Props) {
                   {next.title}
                 </Link>
               )}
-            </div>
+            </nav>
             <Link className="btn back" href="/blogs">
               ← All posts
             </Link>

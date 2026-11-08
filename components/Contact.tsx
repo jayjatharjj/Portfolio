@@ -29,7 +29,11 @@ export default function Contact() {
     if (!EMAIL_RE.test(email)) next.email = "Please enter a valid email.";
     if (message.length < 10) next.message = "Message should be at least 10 characters.";
     setErrors(next);
-    if (Object.keys(next).length) return;
+    const invalid = (["name", "email", "message"] as const).find((k) => next[k]);
+    if (invalid) {
+      form.querySelector<HTMLElement>(`[name="${invalid}"]`)?.focus();
+      return;
+    }
 
     if (data.get("botcheck")) return; // honeypot: silently drop bots
 
@@ -50,11 +54,11 @@ export default function Contact() {
       const json = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string };
       if (!res.ok || !json.success) throw new Error(json.message || "Request failed");
       form.reset();
-      setStatus({ kind: "ok", msg: "Thanks! Your message was sent — I'll reply soon." });
+      setStatus({ kind: "ok", msg: "Thanks! Your message was sent — I’ll reply soon." });
     } catch {
       setStatus({
         kind: "bad",
-        msg: `Couldn't send right now. Please email ${profile.email} directly.`,
+        msg: `Couldn’t send right now. Please email ${profile.email} directly.`,
       });
     }
   }
@@ -77,29 +81,30 @@ export default function Contact() {
         <label>
           Name
           <input name="name" autoComplete="name" aria-invalid={!!errors.name} aria-describedby="e-name" />
-          <span className="err" id="e-name">{errors.name}</span>
+          <span className="err" id="e-name" aria-live="polite">{errors.name}</span>
         </label>
         <label>
           Email
-          <input name="email" type="email" autoComplete="email" aria-invalid={!!errors.email} aria-describedby="e-email" />
-          <span className="err" id="e-email">{errors.email}</span>
+          <input name="email" type="email" autoComplete="email" spellCheck={false} aria-invalid={!!errors.email} aria-describedby="e-email" />
+          <span className="err" id="e-email" aria-live="polite">{errors.email}</span>
         </label>
         <label>
           Message
           <textarea name="message" aria-invalid={!!errors.message} aria-describedby="e-message" />
-          <span className="err" id="e-message">{errors.message}</span>
+          <span className="err" id="e-message" aria-live="polite">{errors.message}</span>
         </label>
-        <div className="hp" aria-hidden="true">
+        <div className="hp" aria-hidden="true" inert>
           <label>
             Leave empty
             <input name="botcheck" tabIndex={-1} autoComplete="off" />
           </label>
         </div>
-        <button className="btn primary" type="submit" disabled={sending}>
-          {sending ? "Sending…" : "Send message →"}
+        <button className="btn primary" type="submit" disabled={sending} aria-busy={sending}>
+          {sending && <span className="spin" aria-hidden="true" />}
+          Send message →
         </button>
         <p className={`status ${status.kind === "ok" ? "ok" : status.kind === "bad" ? "bad" : ""}`} role="status" aria-live="polite">
-          {status.kind === "sending" ? "" : status.msg}
+          {status.msg}
         </p>
       </form>
       <p className="or">

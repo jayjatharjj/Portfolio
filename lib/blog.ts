@@ -24,6 +24,10 @@ export type PostMeta = {
   tags: string[];
   readingMinutes: number;
   sectionCount: number;
+  /** Position in the numbered series (from the filename prefix); null for standalone posts such as cheat sheets. */
+  part: number | null;
+  /** The description is the post's opening quote, which the post page already shows. */
+  descriptionInBody: boolean;
 };
 
 export type TocEntry = { id: string; text: string };
@@ -70,7 +74,7 @@ function clip(text: string, max = 180) {
 }
 
 /** First blockquote, else first paragraph — minus a "Quick Reference:" label and wrapping quotes. */
-function inferDescription(lines: string[]) {
+function inferDescription(lines: string[]): { text: string; fromQuote: boolean } {
   const quote: string[] = [];
   for (const line of lines) {
     if (line.startsWith(">")) quote.push(line.replace(/^>\s?/, ""));
@@ -80,7 +84,7 @@ function inferDescription(lines: string[]) {
   const text = plain(quote.length ? quote.join(" ") : (para ?? ""))
     .replace(/^quick reference:?\s*/i, "")
     .replace(/^["“](.*)["”]$/, "$1");
-  return clip(text);
+  return { text: clip(text), fromQuote: quote.length > 0 };
 }
 
 function toDateString(value: unknown) {
@@ -95,6 +99,7 @@ function readSource(file: string): Source {
   const h1 = lines.find((l) => /^#\s/.test(l));
   const fallbackTitle = slug.replace(/-/g, " ").replace(/^\w/, (c) => c.toUpperCase());
   const words = content.split(/\s+/).filter(Boolean).length;
+  const inferred = typeof data.description === "string" ? null : inferDescription(lines.filter((l) => l !== h1));
 
   return {
     file,
@@ -102,8 +107,9 @@ function readSource(file: string): Source {
     body: content,
     slug,
     title: typeof data.title === "string" ? data.title : h1 ? plain(h1.slice(2)) : fallbackTitle,
-    description:
-      typeof data.description === "string" ? data.description : inferDescription(lines.filter((l) => l !== h1)),
+    description: inferred ? inferred.text : (data.description as string),
+    descriptionInBody: !!inferred?.fromQuote,
+    part: order,
     date: toDateString(data.date),
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     readingMinutes: Math.max(1, Math.round(words / WORDS_PER_MINUTE)),
@@ -144,6 +150,8 @@ const toMeta = (s: Source): PostMeta => ({
   tags: s.tags,
   readingMinutes: s.readingMinutes,
   sectionCount: s.sectionCount,
+  part: s.part,
+  descriptionInBody: s.descriptionInBody,
 });
 
 export function getAllPosts(): PostMeta[] {
@@ -187,7 +195,9 @@ function rehypeFrame(toc: TocEntry[]) {
           return frame;
         }
         if (child.tagName === "table") {
-          return { type: "element", tagName: "div", properties: { className: ["table"] }, children: [child] };
+          // A wide table scrolls sideways, so its frame takes keyboard focus and has a name.
+          const properties = { className: ["table"], tabIndex: 0, role: "group", ariaLabel: "Table, scrolls sideways" };
+          return { type: "element", tagName: "div", properties, children: [child] };
         }
         walk(child);
         return child;

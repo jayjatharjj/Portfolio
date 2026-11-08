@@ -1,6 +1,6 @@
 "use client";
 
-import type { PointerEvent } from "react";
+import { useRef, type PointerEvent } from "react";
 import type { Client, FreelanceStatus } from "@/data/profile";
 import Reveal from "./Reveal";
 
@@ -11,11 +11,17 @@ const chipClass: Record<FreelanceStatus, string> = {
 };
 
 export default function FreelanceCard({ client }: { client: Client }) {
+  const frame = useRef(0);
+  // Pointer moves fire faster than frames: read the layout once per frame.
   const spotlight = (e: PointerEvent<HTMLElement>) => {
     const el = e.currentTarget;
-    const r = el.getBoundingClientRect();
-    el.style.setProperty("--mx", `${e.clientX - r.left}px`);
-    el.style.setProperty("--my", `${e.clientY - r.top}px`);
+    const { clientX, clientY } = e;
+    cancelAnimationFrame(frame.current);
+    frame.current = requestAnimationFrame(() => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty("--mx", `${clientX - r.left}px`);
+      el.style.setProperty("--my", `${clientY - r.top}px`);
+    });
   };
 
   return (
@@ -27,7 +33,8 @@ export default function FreelanceCard({ client }: { client: Client }) {
       <p>{client.text}</p>
       {client.url && (
         <a className="visit" href={client.url} target="_blank" rel="noopener noreferrer">
-          Visit site ↗
+          Visit site <span aria-hidden="true">↗</span>
+          <span className="sr-only"> (opens in a new tab)</span>
         </a>
       )}
     </Reveal>

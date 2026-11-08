@@ -149,7 +149,7 @@ Default: **SQL until a specific access pattern forces NoSQL.** *(Smart360/WebX k
 - **Requirements:** post, follow, ranked/chrono feed; read-heavy; low-latency feed.
 - **Key decision — fan-out:**
 
-| | Fan-out-on-write (push) | Fan-out-on-read (pull) |
+| Aspect | Fan-out-on-write (push) | Fan-out-on-read (pull) |
 |---|---|---|
 | On post | write into every follower's feed | store once |
 | On read | O(1) read precomputed feed | merge followees' posts at read |

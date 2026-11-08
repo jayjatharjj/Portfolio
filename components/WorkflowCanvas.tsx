@@ -1,14 +1,24 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { flow } from "@/data/profile";
 
 const SVG_NS = "http://www.w3.org/2000/svg";
+
+/** White text unless it falls under 4.5:1 on the node colour; then the dark ink the buttons use. */
+function inkOn(hex: string) {
+  const [r, g, b] = [1, 3, 5]
+    .map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+    .map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
+  const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  return 1.05 / (lum + 0.05) >= 4.5 ? "#fff" : "#1a0a07";
+}
 
 /** n8n-style canvas: nodes joined by animated bezier wires, laid out as a snake. */
 export default function WorkflowCanvas() {
   const flowRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
+  const [paused, setPaused] = useState(false);
 
   const wire = useCallback(() => {
     const host = flowRef.current?.parentElement;
@@ -79,32 +89,32 @@ export default function WorkflowCanvas() {
     wire();
     const ro = new ResizeObserver(wire);
     if (flowRef.current?.parentElement) ro.observe(flowRef.current.parentElement);
-    window.addEventListener("resize", wire);
     document.fonts?.ready.then(wire);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", wire);
-    };
+    return () => ro.disconnect();
   }, [wire]);
 
   return (
-    <div className="canvas" aria-label="My journey from school to Bajaj General Insurance">
+    <div className={paused ? "canvas paused" : "canvas"} role="group" aria-label="My journey from school to Bajaj General Insurance">
       <div className="bar">
         <b />
         <b />
         <b />
         <em>my-story · workflow</em>
-        <span className="run">● Running</span>
+        <button className="run" type="button" onClick={() => setPaused((p) => !p)}>
+          <span aria-hidden="true">{paused ? "❚❚ " : "● "}</span>
+          {paused ? "Paused" : "Running"}
+          <span className="sr-only"> — {paused ? "play" : "pause"} the animation</span>
+        </button>
       </div>
       <svg id="wires" ref={svgRef} aria-hidden="true" />
       <div className="flow" ref={flowRef}>
         {flow.map((n, i) => (
           <div className="node" data-i={i} key={n.title}>
-            <div className="ic" style={{ background: n.color }}>
+            <div className="ic" style={{ background: n.color, color: inkOn(n.color) }} aria-hidden="true">
               {n.icon}
             </div>
             <div>
-              <h4>{n.title}</h4>
+              <strong className="nt">{n.title}</strong>
               <small>{n.sub}</small>
             </div>
           </div>
