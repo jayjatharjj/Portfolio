@@ -231,8 +231,9 @@ export const freelance: Client[] = [
   },
   {
     name: "The Munchin Co",
-    status: "In progress",
-    text: "Full-stack web app: React (Vite, Tailwind, 3D visuals) frontend with an Express + MySQL API. Currently in development.",
+    url: "https://themunchinco.com/",
+    status: "Live",
+    text: "Full-stack web app: React (Vite, Tailwind, 3D visuals) frontend with an Express + MySQL API.",
   },
 ];
 

@@ -118,7 +118,7 @@ h1 span{background:linear-gradient(100deg,var(--accent),var(--accent2) 60%,#ffd2
 .job li{position:relative;padding-left:22px;color:#cfcfda;font-size:15px}
 .job li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;border:2px solid var(--accent)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.chip{font:12px var(--mono);padding:5px 11px;border-radius:9px;background:#1d1d27;border:1px solid var(--line);color:#c4c4d2}
+.chip{font:12px var(--mono);padding:5px 11px;border-radius:9px;background:rgba(47,107,255,.08);border:1px solid rgba(47,107,255,.28);color:#c9d6ff}
 .proj{margin-top:22px;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
 .proj h4{font-size:15px;margin-bottom:10px}
 .proj h4 small{font:12px var(--mono);color:var(--mute);font-weight:400;margin-left:6px}
@@ -139,7 +139,7 @@ h1 span{background:linear-gradient(100deg,var(--accent),var(--accent2) 60%,#ffd2
 /* stack */
 .stack{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
 .group{padding:22px;border:1px solid var(--line);border-radius:var(--r);background:var(--card)}
-.group h3{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:14px}
+.group h3{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);margin-bottom:14px}
 
 /* certs */
 .two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:44px}
@@ -212,7 +212,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .client:hover{border-color:#3a3a4a;transform:translateY(-3px)}
 .client:hover::after{opacity:1}
 .client .top{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.client h3{font-size:18px;letter-spacing:-.02em}
+.client h4{font-size:18px;letter-spacing:-.02em}
 .client p{color:var(--mute);font-size:14px;flex:1}
 .client .visit{font:500 12px var(--mono);color:var(--blue2)}
 .client .visit:hover{text-decoration:underline}
@@ -223,13 +223,14 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .more{margin-top:18px;color:var(--mute);font-size:14px}
 /* "How I work": numbered client process above the client cards */
 .process{margin-top:36px}
-.process h3{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent2)}
+.flabel{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent2)}
 .steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:14px}
 .step{padding:18px;border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(180deg,var(--card),#111117)}
 .step .num{font:12px var(--mono);color:var(--blue2)}
 .step h4{font-size:15px;line-height:1.3;letter-spacing:-.01em;margin:8px 0 6px}
 .step p{font-size:13px;color:var(--mute)}
-.process + .clients{margin-top:28px}
+.process + .flabel{margin-top:40px}
+.flabel + .clients{margin-top:14px}
 @media (max-width:900px){
   .steps{grid-template-columns:1fr;gap:10px}
   .step{display:grid;grid-template-columns:auto 1fr;column-gap:14px;padding:14px 16px}

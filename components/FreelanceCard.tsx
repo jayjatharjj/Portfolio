@@ -27,7 +27,7 @@ export default function FreelanceCard({ client }: { client: Client }) {
   return (
     <Reveal as="article" className="client" onPointerMove={spotlight}>
       <div className="top">
-        <h3>{client.name}</h3>
+        <h4>{client.name}</h4>
         <span className={`status-chip ${chipClass[client.status]}`}>{client.status}</span>
       </div>
       <p>{client.text}</p>

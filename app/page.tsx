@@ -222,7 +222,7 @@ export default function Home() {
               End-to-end websites and web apps for businesses: I take the requirements, understand what the business needs, design it, build it with AI engineering and deploy it on the cloud. Alongside my full-time role, plus many one-off landing pages.
             </Reveal>
             <Reveal className="process">
-              <h3>How I work</h3>
+              <h3 className="flabel">How I work</h3>
               <ol className="steps">
                 {howIWork.map((s, i) => (
                   <li className="step" key={s.title}>
@@ -232,6 +232,9 @@ export default function Home() {
                   </li>
                 ))}
               </ol>
+            </Reveal>
+            <Reveal as="h3" className="flabel">
+              Client projects
             </Reveal>
             <div className="clients">
               {freelance.map((c) => (
