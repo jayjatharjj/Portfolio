@@ -236,6 +236,16 @@ export const freelance: Client[] = [
   },
 ];
 
+// End-to-end client process, shown as numbered steps in the Freelance section.
+export type Step = { title: string; text: string };
+export const howIWork: Step[] = [
+  { title: "Requirements", text: "A first call to capture goals, pages, features and budget." },
+  { title: "Understand the need", text: "Learn the business and its customers, and what the site has to achieve." },
+  { title: "Design", text: "Layouts and UI shaped around the brand, reviewed with you before build." },
+  { title: "Build with AI engineering", text: "Full-stack build, with AI-assisted development and AI features where they help." },
+  { title: "Deploy on cloud", text: "Shipped to the cloud with domain and SSL, then handed over." },
+];
+
 export const certifications = [
   { name: "Microsoft Certified: Azure Developer Associate", date: "Jan 2026" },
   { name: "Oracle Cloud Infrastructure 2025 Certified: Generative AI Professional", date: "Dec 2025" },

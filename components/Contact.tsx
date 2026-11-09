@@ -8,6 +8,8 @@ import { profile } from "@/data/profile";
 const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "";
 const ENDPOINT = "https://api.web3forms.com/submit";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Optional; tagged onto the email subject so client leads stand out from job enquiries.
+const TOPICS = ["Job / role", "Website or web app for my business", "Something else"] as const;
 
 type Status = { kind: "idle" | "sending" | "ok" | "bad"; msg: string };
 type Errors = Partial<Record<"name" | "email" | "message", string>>;
@@ -23,6 +25,7 @@ export default function Contact() {
     const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
     const message = String(data.get("message") ?? "").trim();
+    const topic = String(data.get("topic") ?? "");
 
     const next: Errors = {};
     if (!name) next.name = "Please enter your name.";
@@ -44,10 +47,11 @@ export default function Contact() {
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           access_key: ACCESS_KEY,
-          subject: `Portfolio message from ${name}`,
+          subject: `${topic ? `[${topic}] ` : ""}Portfolio message from ${name}`,
           from_name: "Portfolio contact form",
           name,
           email,
+          topic: topic || "Not specified",
           message,
         }),
       });
@@ -78,6 +82,14 @@ export default function Contact() {
   return (
     <>
       <form className="form" onSubmit={onSubmit} noValidate>
+        <fieldset className="topic">
+          <legend>What&apos;s this about?</legend>
+          {TOPICS.map((t) => (
+            <label className="choice" key={t}>
+              <input type="radio" name="topic" value={t} /> {t}
+            </label>
+          ))}
+        </fieldset>
         <label>
           Name
           <input name="name" autoComplete="name" aria-invalid={!!errors.name} aria-describedby="e-name" />

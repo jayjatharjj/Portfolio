@@ -14,6 +14,7 @@ import {
   certifications,
   education,
   freelance,
+  howIWork,
   jobs,
   profile,
   stack,
@@ -218,7 +219,19 @@ export default function Home() {
             <Reveal className="eyebrow">Freelance</Reveal>
             <Reveal as="h2">Client work.</Reveal>
             <Reveal as="p" className="lead">
-              Websites and web apps I build and deploy for small businesses, alongside my full-time role, plus many one-off landing pages.
+              End-to-end websites and web apps for businesses: I take the requirements, understand what the business needs, design it, build it with AI engineering and deploy it on the cloud. Alongside my full-time role, plus many one-off landing pages.
+            </Reveal>
+            <Reveal className="process">
+              <h3>How I work</h3>
+              <ol className="steps">
+                {howIWork.map((s, i) => (
+                  <li className="step" key={s.title}>
+                    <span className="num">{String(i + 1).padStart(2, "0")}</span>
+                    <h4>{s.title}</h4>
+                    <p>{s.text}</p>
+                  </li>
+                ))}
+              </ol>
             </Reveal>
             <div className="clients">
               {freelance.map((c) => (
@@ -273,7 +286,7 @@ export default function Home() {
               </div>
               <h2>Have something worth building?</h2>
               <p className="lead" style={{ margin: "0 auto" }}>
-                I&apos;m happy to talk about backend architecture, cloud infrastructure or AI workflows.
+                Hiring for a Java or cloud role, or need a website or web app built for your business, from requirements to cloud deployment? Let&apos;s talk.
               </p>
               <Contact />
               <div className="cta">
