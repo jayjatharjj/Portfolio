@@ -204,7 +204,7 @@ export const freelance: Client[] = [
     name: "Grahboli",
     url: "https://grahboli.com/",
     status: "Live",
-    text: "Astrology consultation platform: slot booking, Razorpay payments, Google Calendar and WhatsApp notifications. Spring Boot + MySQL backend, React frontend.",
+    text: "Astrology platform: consultation booking and paid courses with Razorpay payments, Google Calendar and WhatsApp notifications, bilingual English/Marathi content. Spring Boot + MySQL backend, React frontend.",
   },
   {
     name: "Electric Desk",
@@ -216,13 +216,13 @@ export const freelance: Client[] = [
     name: "Swamini Foods",
     url: "https://www.swaminifoods.in/",
     status: "Live",
-    text: "Business website for a food brand.",
+    text: "E-commerce site for a women-led Pune brand of homemade laddoos: 9-variety catalogue with cart, WhatsApp ordering and delivery across India.",
   },
   {
     name: "Dnyanraj Industries",
     url: "https://www.dnyanrajindustries.com/",
     status: "Live",
-    text: "Business website for Dnyanraj Industries.",
+    text: "Website for a Pune foam fabrication and protective packaging manufacturer: product catalogue, industries served, and a quote form with drawing upload plus WhatsApp enquiries.",
   },
   {
     name: "SPCA World",
@@ -233,7 +233,7 @@ export const freelance: Client[] = [
     name: "The Munchin Co",
     url: "https://themunchinco.com/",
     status: "Live",
-    text: "Full-stack web app: React (Vite, Tailwind, 3D visuals) frontend with an Express + MySQL API.",
+    text: "E-commerce store for a roasted makhana brand with end-to-end ordering: combo pricing, Razorpay payments, delivery integration, Google sign-in and guest order tracking, analytics and a fully customizable admin panel. React + Express + MySQL.",
   },
 ];
 
