@@ -122,6 +122,7 @@ h1 span{background:linear-gradient(100deg,var(--accent),var(--accent2) 60%,#ffd2
 .proj{margin-top:22px;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
 .proj h4{font-size:15px;margin-bottom:10px}
 .proj h4 small{font:12px var(--mono);color:var(--mute);font-weight:400;margin-left:6px}
+.job-toggle{display:none}
 
 /* projects */
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:44px}
@@ -169,6 +170,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   .flow{grid-template-columns:repeat(2,1fr);gap:34px 30px}
   .stats{grid-template-columns:repeat(2,1fr)}
   .job{grid-template-columns:1fr;gap:14px}
+  .js .job-body:not(.open) .job-more{display:none}
+  .js .job-toggle{display:inline-flex;align-items:center;gap:6px;min-height:44px;margin-top:12px;padding:0;background:none;border:0;cursor:pointer;font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent2)}
+  .job-toggle::after{content:"▾"}
+  .job-toggle[aria-expanded=true]::after{content:"▴"}
   .grid,.two,.stack{grid-template-columns:1fr}
   section{padding-block:70px}
 }
@@ -204,8 +209,6 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 @media (prefers-reduced-motion:reduce){.spin{animation:none}}
 
 /* per-project stack line + freelance */
-.proj .pstack{font-size:13px;color:var(--mute);margin-bottom:10px}
-.proj .pstack b{color:var(--text);font-weight:600}
 .clients{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
 .client{position:relative;display:flex;flex-direction:column;gap:10px;padding:22px;border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(180deg,var(--card),#111117);transition:border-color .3s,transform .3s;overflow:hidden}
 .client::after{content:"";position:absolute;inset:0;background:radial-gradient(360px 180px at var(--mx,50%) var(--my,0%),rgba(255,122,26,.12),transparent 70%);opacity:0;transition:opacity .3s;pointer-events:none}
@@ -231,7 +234,13 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .step p{font-size:13px;color:var(--mute)}
 .process + .flabel{margin-top:40px}
 .flabel + .clients{margin-top:14px}
+.process-toggle{display:none}
 @media (max-width:900px){
+  .js .process-label{display:none}
+  .js .process-toggle{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0;background:none;border:0;cursor:pointer;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit}
+  .process-toggle::after{content:"▾"}
+  .process-toggle[aria-expanded=true]::after{content:"▴"}
+  .js .process-body:not(.open){display:none}
   .steps{grid-template-columns:1fr;gap:10px}
   .step{display:grid;grid-template-columns:auto 1fr;column-gap:14px;padding:14px 16px}
   .step .num{grid-row:span 2;padding-top:2px}

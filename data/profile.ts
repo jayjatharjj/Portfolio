@@ -33,7 +33,7 @@ export const stats: Stat[] = [
   { n: 6, suffix: "+", label: "freelance client projects, plus landing pages" },
 ];
 
-export type Project = { name: string; sub: string; stack: string; bullets: string[] };
+export type Project = { name: string; sub: string; bullets: string[] };
 export type Job = {
   company: string;
   role: string;
@@ -67,11 +67,26 @@ export const jobs: Job[] = [
     role: "Java Full Stack Developer · Cloud & Microservices",
     when: "Oct 2023 — Jul 2026",
     where: "Pune, India",
+    chips: [
+      "Java",
+      "Spring Boot",
+      "Vue3",
+      "React",
+      "TypeScript",
+      "PostgreSQL",
+      "MySQL",
+      "AWS S3",
+      "Azure (ACA, Key Vault, Functions)",
+      "Kubernetes",
+      "Docker",
+      "CI/CD",
+      "GitLab API",
+      "LLM API"
+    ],
     projects: [
       {
         name: "Smart360",
         sub: "enterprise data collaboration platform",
-        stack: "Java 17, Spring Boot, Spring Cloud, Vue 3, TypeScript, D3.js, PostgreSQL, AWS S3, GitLab CI/CD",
         bullets: [
           "Built 5 Spring Boot microservices and 60+ Vue.js components, delivering an enterprise data management platform with 100% client specification compliance.",
           "Implemented JWT/OAuth2 authentication with role-based access control at repository, table, and permission levels, reducing sign-in time by 60%",
@@ -82,7 +97,6 @@ export const jobs: Job[] = [
       {
         name: "Deep Fathom / Benthic",
         sub: "compliance & risk management platform",
-        stack: "Azure (ACA, PostgreSQL, Key Vault, Functions), Kubernetes, Docker, GitLab CI/CD, Bicep (IaC)",
         bullets: [
           "Provisioned and managed 30+ Azure resources across staging (Commercial) and production (FedRAMP GovCloud), including Container Apps, PostgreSQL Flexible Server, Key Vault, Redis Cache, Blob Storage, and Front Door Premium.",
           "Architected secure VNet topology with 6 subnets and 6 NSGs (21 security rules) per environment, implementing private endpoints, Azure Jumphost VM access.",
@@ -92,7 +106,6 @@ export const jobs: Job[] = [
       {
         name: "WebX & ImageX",
         sub: "AI web generator & AI image generator",
-        stack: "Java 17, Spring Boot 3.x, React 19, TypeScript, PostgreSQL/MySQL, AWS S3, GitLab API",
         bullets: [
           "Integrated 5+ AI models through unified proxy architecture with intelligent routing, async processing for long-running operations (2-20 min)",
           "Built end-to-end AI website generator pipeline (keyword analysis → layout → HTML/CSS → image generation → GitLab deployment), reducing website creation from days to minutes with 100% automated deployment.",
@@ -112,7 +125,7 @@ export const jobs: Job[] = [
       "Hands-on experience in multiple projects with diverse client scenarios, utilizing data engineering technologies to solve complex problems.",
       "Proficient in data analysis and visualization, extracting actionable insights that enhance decision-making processes.",
     ],
-    chips: ["MySQL", "Sqoop", "Big Data"],
+    chips: ["MySQL", "Python", "Data Analysis"],
   },
   {
     company: "Biencaps Systems Pvt. Ltd.",
@@ -157,36 +170,36 @@ export const jobs: Job[] = [
 ];
 
 export type Work = { num: string; tag: string; title: string; text: string; metrics: [string, string][] };
-export const work: Work[] = [
-  {
-    num: "01",
-    tag: "Insurance · AI",
-    title: "Virtual Legal Officer",
-    text: "A claims analysis platform for the legal team: queued document ingestion on AWS SQS, AI-generated summaries with contradiction and fraud flags, and automated drafts behind a clean React UI.",
-    metrics: [["60–100", "docs per claim"], ["100s", "claims per day"]],
-  },
-  {
-    num: "02",
-    tag: "Cloud · Security",
-    title: "Benthic on FedRAMP GovCloud",
-    text: "Modular Bicep infrastructure across Commercial and GovCloud with isolated networking and Postgres Row-Level Security for true multi-tenancy.",
-    metrics: [["30+", "Azure resources"], ["57%", "faster pipeline"]],
-  },
-  {
-    num: "03",
-    tag: "Data platform",
-    title: "Smart360",
-    text: "Enterprise data collaboration platform on Spring Boot microservices and Vue 3, with D3.js visualizations and fine-grained role-based access.",
-    metrics: [["5", "microservices"], ["60+", "Vue components"], ["30+", "releases"]],
-  },
-  {
-    num: "04",
-    tag: "Generative AI",
-    title: "WebX & ImageX",
-    text: "Multi-model AI platforms that go from a keyword to a deployed website and generate, edit and store images across providers.",
-    metrics: [["5+", "AI models"], ["20+", "API endpoints"]],
-  },
-];
+// export const work: Work[] = [
+//   {
+//     num: "01",
+//     tag: "Insurance · AI",
+//     title: "Virtual Legal Officer",
+//     text: "A claims analysis platform for the legal team: queued document ingestion on AWS SQS, AI-generated summaries with contradiction and fraud flags, and automated drafts behind a clean React UI.",
+//     metrics: [["60–100", "docs per claim"], ["100s", "claims per day"]],
+//   },
+//   {
+//     num: "02",
+//     tag: "Cloud · Security",
+//     title: "Benthic on FedRAMP GovCloud",
+//     text: "Modular Bicep infrastructure across Commercial and GovCloud with isolated networking and Postgres Row-Level Security for true multi-tenancy.",
+//     metrics: [["30+", "Azure resources"], ["57%", "faster pipeline"]],
+//   },
+//   {
+//     num: "03",
+//     tag: "Data platform",
+//     title: "Smart360",
+//     text: "Enterprise data collaboration platform on Spring Boot microservices and Vue 3, with D3.js visualizations and fine-grained role-based access.",
+//     metrics: [["5", "microservices"], ["60+", "Vue components"], ["30+", "releases"]],
+//   },
+//   {
+//     num: "04",
+//     tag: "Generative AI",
+//     title: "WebX & ImageX",
+//     text: "Multi-model AI platforms that go from a keyword to a deployed website and generate, edit and store images across providers.",
+//     metrics: [["5+", "AI models"], ["20+", "API endpoints"]],
+//   },
+// ];
 
 export const stack: { title: string; items: string[] }[] = [
   { title: "Languages", items: ["Java", "Python", "JavaScript", "TypeScript"] },
@@ -204,7 +217,7 @@ export const freelance: Client[] = [
     name: "Grahboli",
     url: "https://grahboli.com/",
     status: "Live",
-    text: "Astrology platform: consultation booking and paid courses with Razorpay payments, Google Calendar and WhatsApp notifications, bilingual English/Marathi content. Spring Boot + MySQL backend, React frontend.",
+    text: "Astrology platform: consultation booking and paid courses with Razorpay payments, Google Calendar and WhatsApp notifications, bilingual English/Marathi content.",
   },
   {
     name: "Electric Desk",
@@ -233,7 +246,7 @@ export const freelance: Client[] = [
     name: "The Munchin Co",
     url: "https://themunchinco.com/",
     status: "Live",
-    text: "E-commerce store for a roasted makhana brand with end-to-end ordering: combo pricing, Razorpay payments, delivery integration, Google sign-in and guest order tracking, analytics and a fully customizable admin panel. React + Express + MySQL.",
+    text: "E-commerce store for a roasted makhana brand with end-to-end ordering: combo pricing, Razorpay payments, delivery integration, Google sign-in and guest order tracking, analytics and a fully customizable admin panel.",
   },
 ];
 

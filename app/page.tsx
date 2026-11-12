@@ -7,7 +7,9 @@ import SiteNav from "@/components/SiteNav";
 import Reveal from "@/components/Reveal";
 import Stats from "@/components/Stats";
 import FreelanceCard from "@/components/FreelanceCard";
-import WorkCard from "@/components/WorkCard";
+import HowIWork from "@/components/HowIWork";
+import JobDetails from "@/components/JobDetails";
+// import WorkCard from "@/components/WorkCard";
 import WorkflowCanvas from "@/components/WorkflowCanvas";
 import {
   achievements,
@@ -18,7 +20,7 @@ import {
   jobs,
   profile,
   stack,
-  work,
+  // work,
 } from "@/data/profile";
 import { getAllPosts } from "@/lib/blog";
 
@@ -130,11 +132,11 @@ export default function Home() {
                     </>
                   )}
                 </div>
-                <div>
+                <JobDetails>
                   <h3>{job.company}</h3>
                   <div className="role">{job.role}</div>
                   {job.bullets && (
-                    <ul>
+                    <ul className="job-more">
                       {job.bullets.map((b) => (
                         <li key={b}>{b}</li>
                       ))}
@@ -150,13 +152,10 @@ export default function Home() {
                     </div>
                   )}
                   {job.projects?.map((p) => (
-                    <div className="proj" key={p.name}>
+                    <div className="proj job-more" key={p.name}>
                       <h4>
                         {p.name} <small>{p.sub}</small>
                       </h4>
-                      <p className="pstack">
-                        <b>Technology Stack:</b> {p.stack}
-                      </p>
                       <ul>
                         {p.bullets.map((b) => (
                           <li key={b}>{b}</li>
@@ -164,7 +163,7 @@ export default function Home() {
                       </ul>
                     </div>
                   ))}
-                </div>
+                </JobDetails>
               </Reveal>
               </Fragment>
             ))}
@@ -222,16 +221,17 @@ export default function Home() {
               End-to-end websites and web apps for businesses: I take the requirements, understand what the business needs, design it, build it with AI engineering and deploy it on the cloud. Alongside my full-time role, plus many one-off landing pages.
             </Reveal>
             <Reveal className="process">
-              <h3 className="flabel">How I work</h3>
-              <ol className="steps">
-                {howIWork.map((s, i) => (
-                  <li className="step" key={s.title}>
-                    <span className="num">{String(i + 1).padStart(2, "0")}</span>
-                    <h4>{s.title}</h4>
-                    <p>{s.text}</p>
-                  </li>
-                ))}
-              </ol>
+              <HowIWork>
+                <ol className="steps">
+                  {howIWork.map((s, i) => (
+                    <li className="step" key={s.title}>
+                      <span className="num">{String(i + 1).padStart(2, "0")}</span>
+                      <h4>{s.title}</h4>
+                      <p>{s.text}</p>
+                    </li>
+                  ))}
+                </ol>
+              </HowIWork>
             </Reveal>
             <Reveal as="h3" className="flabel">
               Client projects
@@ -247,20 +247,20 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="projects">
-          <div className="wrap">
-            <Reveal className="eyebrow">Selected work</Reveal>
-            <Reveal as="h2">Things I&apos;m proud of.</Reveal>
-            <Reveal as="p" className="lead">
-              A few systems where architecture decisions mattered most.
-            </Reveal>
-            <div className="grid">
-              {work.map((w) => (
-                <WorkCard item={w} key={w.num} />
-              ))}
-            </div>
-          </div>
-        </section>
+        {/*<section id="projects">*/}
+        {/*  <div className="wrap">*/}
+        {/*    <Reveal className="eyebrow">Selected work</Reveal>*/}
+        {/*    <Reveal as="h2">Things I&apos;m proud of.</Reveal>*/}
+        {/*    <Reveal as="p" className="lead">*/}
+        {/*      A few systems where architecture decisions mattered most.*/}
+        {/*    </Reveal>*/}
+        {/*    <div className="grid">*/}
+        {/*      {work.map((w) => (*/}
+        {/*        <WorkCard item={w} key={w.num} />*/}
+        {/*      ))}*/}
+        {/*    </div>*/}
+        {/*  </div>*/}
+        {/*</section>*/}
 
         {posts.length > 0 && (
           <section id="writing">
