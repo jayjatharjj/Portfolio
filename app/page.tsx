@@ -72,7 +72,7 @@ export default function Home() {
               </Reveal>
               <Reveal as="p">{profile.intro}</Reveal>
               <Reveal className="cta">
-                <a className="btn primary" href="#projects">
+                <a className="btn primary" href="#freelance">
                   See my work
                 </a>
                 {profile.resume && (
